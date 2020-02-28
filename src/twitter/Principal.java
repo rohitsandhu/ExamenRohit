@@ -35,7 +35,7 @@ public class Principal {
 
                     if (Funcions.comprovarUsuari(user, contra, alUsuaris)) {
 
-                        Usuaris usuariLoged = Funcions.buscarUsuari(user, contra, alUsuaris);
+                        Usuaris usuariLoged = Funcions.buscarUsuari(user, alUsuaris);
                         String classe = usuariLoged.tornarClasse();
                         bucle: while (true) {
 
@@ -69,11 +69,11 @@ public class Principal {
 
                                         case 4:
                                             System.out.println(
-                                                    " Escriu el nom del usuari Lector que vols convertir en Autor: (Enter per veure tots els usuaris Lectors) ");
+                                                    " Escriu el nom del usuari Lector que vols convertir en Autor: (ENTER per veure tots els usuaris Lectors) ");
                                             String futurAutor = System.console().readLine();
                                             if (futurAutor.equals("")) {
                                                 usuariLoged.llistarUser("Lector", alUsuaris);
-                                                futurAutor=System.console().readLine();
+                                                futurAutor = System.console().readLine();
                                             }
 
                                             Funcions.canviarClasse(alUsuaris, futurAutor);
@@ -96,10 +96,36 @@ public class Principal {
 
                                 case "Lector":
                                     usuariLoged.mostrarMenu();
+                                    opció = Integer.parseInt(System.console().readLine());
                                     break;
 
                                 case "Autor":
                                     usuariLoged.mostrarMenu();
+                                    opció = Integer.parseInt(System.console().readLine());
+                                    switch (opció) {
+                                        case 1:
+
+                                            break;
+
+                                        case 2:
+                                            System.out.println(
+                                                    " Escriu el nom del Autor que vols seguir: (ENTER per veure tots els usuaris Lectors) ");
+                                            String resposta = System.console().readLine();
+                                            if (resposta.equals("")) {
+                                                usuariLoged.llistarUser("Autor", alUsuaris);
+                                                resposta = System.console().readLine();
+                                            }
+                                            usuariLoged.seguirAutor(resposta, alUsuaris);
+                                            break;
+
+                                        case 3:
+                                            usuariLoged.mostrarUsuarisSeguits();
+                                            break;
+
+                                        case 4:
+                                            usuariLoged.mostrarMur();
+                                            break;
+                                    }
                                     break;
 
                             }

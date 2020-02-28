@@ -31,13 +31,13 @@ public class Funcions {
         return false;
     }
 
-    public static Usuaris buscarUsuari(String user, String contra, ArrayList<Usuaris> alUsuaris) {
+    public static Usuaris buscarUsuari(String user,  ArrayList<Usuaris> alUsuaris) {
 
         for (Usuaris u : alUsuaris) {
             if (user.equals(u.getUserName())) {
-                if (contra.equals(u.getPassword())) {
+                
                     return u;
-                }
+                
             }
         }
         return null;
@@ -49,7 +49,7 @@ public class Funcions {
         for (Posts post : alPosts) {
             System.out.println(iterador + " - " + "Data: " + post.getLdt().getDayOfMonth() + "/"
                     + post.getLdt().getMonthValue() + "/" + post.getLdt().getYear() + " - " + post.getLdt().getHour()
-                    + ":" + post.getLdt().getMinute() + " - " + "Autor: " + post.getUser().getUserName() + " - "
+                     + " - " + "Autor: " + post.getUser().getUserName() + " - "
                     + "Titol: " + post.getTitol());
 
             iterador++;

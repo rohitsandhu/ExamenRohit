@@ -45,5 +45,38 @@ public class Administrador extends Usuaris {
         return this.getClass().getSimpleName();
     }
 
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void llistarUser(String clase, ArrayList<Usuaris> alUsuaris) {
+        System.out.println("**********************************");
+        for (Usuaris user : alUsuaris) {
+
+            if (user.getClass().getSimpleName().equals(clase)) {
+            System.out.println( user.getUserName());
+            }
+
+        }
+
+    }
+
+    @Override
+    public void mostrarMur() {
+        // TODO Auto-generated method stub
+
+    }
+
+    // @Override
+    // public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris) {
+    //     // TODO Auto-generated method stub
+
+    // }
+
+
+
 
 }

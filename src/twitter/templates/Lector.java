@@ -2,6 +2,8 @@ package twitter.templates;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+
 import twitter.templates.*;
 import twitter.funcions.Funcions;
 
@@ -54,8 +56,32 @@ public class Lector extends Usuaris {
 
     @Override
     public String tornarClasse() {
-        
+
         return this.getClass().getSimpleName();
     }
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void llistarUser(String clase, ArrayList<Usuaris> alUsuaris) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void mostrarMur() {
+        // TODO Auto-generated method stub
+
+    }
+
+    // @Override
+    // public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris) {
+    //     // TODO Auto-generated method stub
+
+    // }
 
 }

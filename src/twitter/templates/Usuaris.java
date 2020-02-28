@@ -57,16 +57,7 @@ public abstract class Usuaris {
 
     public abstract String tornarClasse();
 
-    public void llistarUser(String clase, ArrayList<Usuaris> alUsuaris) {
-        System.out.println("**********************************");
-        for (Usuaris user : alUsuaris) {
-
-            if (user.getClass().getSimpleName().equals(clase)) {
-            System.out.println( user.getUserName());
-            }
-
-        }
-    }
+    public abstract void llistarUser(String clase, ArrayList<Usuaris> alUsuaris);
 
     public ArrayList<Usuaris> getAutorsQueSegueixo() {
         return autorsQueSegueixo;
@@ -75,4 +66,27 @@ public abstract class Usuaris {
     public void setAutorsQueSegueixo(ArrayList<Usuaris> autorsQueSegueixo) {
         this.autorsQueSegueixo = autorsQueSegueixo;
     }
+
+    public void afegirAutorASeguir(Usuaris resposta){
+        this.autorsQueSegueixo.add(resposta);
+    }
+
+    @Override
+    public abstract String toString();
+
+    public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris){
+        for (Usuaris user : alUsuaris) {
+            if(user.userName.equals(aSeguir)){
+                this.afegirAutorASeguir(user);
+            }
+        }
+    }
+
+	public void mostrarUsuarisSeguits() {
+        for (Usuaris uu : autorsQueSegueixo) {
+            System.out.println(uu.getUserName());
+        }
+    }
+    
+    public abstract void mostrarMur();
 }
