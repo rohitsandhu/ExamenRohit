@@ -2,7 +2,7 @@ package twitter.templates;
 
 import java.time.LocalDate;
 import java.time.Period;
-
+import twitter.templates.*;
 import twitter.funcions.Funcions;
 
 public class Lector extends Usuaris {
@@ -40,6 +40,22 @@ public class Lector extends Usuaris {
             this.major = true;
         }
         this.major = true;
+    }
+
+    @Override
+    public void mostrarMenu() {
+        System.out.println("**************************************");
+        System.out.println(" 1 -> Seguir a un Autor nou ");
+        System.out.println(" 2 -> Veure els Autors que segueixo ");
+        System.out.println(" 3 -> Mirar el teu mur ");
+        System.out.println(" 0 -> Log Out ");
+        System.out.println("**************************************");
+    }
+
+    @Override
+    public String tornarClasse() {
+        
+        return this.getClass().getSimpleName();
     }
 
 }
