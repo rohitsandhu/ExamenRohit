@@ -80,8 +80,9 @@ public class Lector extends Usuaris {
         for (Usuaris user : alUsuaris) {
 
             for (Posts post : user.getAlPosts()) {
-                if (!post.isMajors() || this.isMajor() || post.isMajors() && this.isMajor()) {
-                    if (user.getClass().getSimpleName().equals("Adminitrador")) {
+
+                if (post.getUser().tornarClasse().equals("Administrador")) {
+                    if ((post.isMajors()==true && this.isMajor()==true) || (post.isMajors()==false && this.isMajor()==false) || (post.isMajors()==false && this.isMajor()==true)) {
                         System.out.println("*******************************");
                         System.out.println("Data: " + post.getLdt().getDayOfMonth() + "/"
                                 + post.getLdt().getMonthValue() + "/" + post.getLdt().getYear() + " - "
@@ -91,10 +92,10 @@ public class Lector extends Usuaris {
                         System.out.println(" Titol: " + post.getTitol());
                         System.out.println(" Contingut: " + post.getContingut());
                         System.out.println("*******************************");
+                    }else {
+                        System.out.println(" El contingut ha sigut restingit a causa de la teva edat. ");
                     }
-                } else {
-                    System.out.println(" El contingut ha sigut restingit a causa de la teva edat. ");
-                }
+                } 
 
             }
         }

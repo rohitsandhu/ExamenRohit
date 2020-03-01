@@ -53,7 +53,6 @@ public class Administrador extends Usuaris {
             if (user.getClass().getSimpleName().equals(clase)) {
                 System.out.println(user.getUserName());
             }
-
         }
         System.out.println("**********************************");
 

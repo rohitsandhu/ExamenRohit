@@ -105,7 +105,6 @@ public class Principal {
                                         case 0:
 
                                             break bucle;
-
                                         case 1:
                                             System.out.println(
                                                     " Escriu el nom del Autor que vols seguir: (ENTER per veure tots els usuaris Autors ) ");

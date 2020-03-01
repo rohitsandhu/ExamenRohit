@@ -55,7 +55,7 @@ public class Autor extends Usuaris {
         for (Usuaris user : alUsuaris) {
             
             for (Posts post : user.getAlPosts()) {
-                if(user.getClass().getSimpleName().equals("Adminitrador")){
+                if(post.getUser().tornarClasse().equals("Administrador")){
                     System.out.println("*******************************");
                     System.out.println("Data: " + post.getLdt().getDayOfMonth() + "/" + post.getLdt().getMonthValue() + "/"
                             + post.getLdt().getYear() + " - " + post.getLdt().getHour() + ":" + post.getLdt().getMinute());
