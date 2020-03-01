@@ -1,7 +1,5 @@
 package twitter.funcions;
 
-import java.net.Authenticator;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import twitter.templates.Autor;
@@ -31,28 +29,37 @@ public class Funcions {
         return false;
     }
 
-    public static Usuaris buscarUsuari(String user,  ArrayList<Usuaris> alUsuaris) {
+    public static Usuaris buscarUsuari(String user, ArrayList<Usuaris> alUsuaris) {
 
         for (Usuaris u : alUsuaris) {
             if (user.equals(u.getUserName())) {
-                
-                    return u;
-                
+
+                return u;
+
             }
         }
         return null;
     }
 
-    public static void llistarPosts(ArrayList<Posts> alPosts) {
+    public static boolean llistarPosts(ArrayList<Usuaris> alUsuaris) {
         int iterador = 1;
         System.out.println("************************************************************************");
-        for (Posts post : alPosts) {
-            System.out.println(iterador + " - " + "Data: " + post.getLdt().getDayOfMonth() + "/"
-                    + post.getLdt().getMonthValue() + "/" + post.getLdt().getYear() + " - " + post.getLdt().getHour()
-                     + " - " + "Autor: " + post.getUser().getUserName() + " - "
-                    + "Titol: " + post.getTitol());
+        for (Usuaris u : alUsuaris) {
 
-            iterador++;
+            for (Posts post : u.getAlPosts()) {
+                System.out.println(iterador + " - " + "Data: " + post.getLdt().getDayOfMonth() + "/"
+                        + post.getLdt().getMonthValue() + "/" + post.getLdt().getYear() + " - "
+                        + post.getLdt().getHour() + " - " + "Autor: " + post.getUser().getUserName() + " - " + "Titol: "
+                        + post.getTitol());
+
+                iterador++;
+            }
+        }
+        System.out.println("************************************************************************");
+        if (iterador == 1) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -72,5 +79,23 @@ public class Funcions {
         }
 
     }
+
+    public static void borrarPost(ArrayList<Usuaris> alUsuaris, int numero) {
+        int iterador = 1;
+        for (Usuaris u : alUsuaris) {
+            int it=0;
+            for (Posts post : u.getAlPosts()) {
+                if(iterador==numero){
+                    u.getAlPosts().remove(it);
+                }
+                it++;
+                iterador++;
+            }
+        }
+    }
+
+    // public static void llistarPostsAdministrador(){
+
+    // }
 
 }

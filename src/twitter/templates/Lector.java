@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-import twitter.templates.*;
-import twitter.funcions.Funcions;
+// import twitter.templates.*;
 
 public class Lector extends Usuaris {
 
@@ -41,7 +40,7 @@ public class Lector extends Usuaris {
         if (periodi.getYears() >= 18) {
             this.major = true;
         }
-        this.major = true;
+        this.major = false;
     }
 
     @Override
@@ -61,27 +60,67 @@ public class Lector extends Usuaris {
     }
 
     @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public void llistarUser(String clase, ArrayList<Usuaris> alUsuaris) {
-        // TODO Auto-generated method stub
+        System.out.println("**********************************");
+
+        for (Usuaris user : alUsuaris) {
+
+            if (user.getClass().getSimpleName().equals(clase)
+                    && user.getClass().getSimpleName() != this.getUserName()) {
+                System.out.println(user.getUserName());
+            }
+        }
+        System.out.println("**********************************");
 
     }
 
     @Override
-    public void mostrarMur() {
-        // TODO Auto-generated method stub
+    public void mostrarMur(ArrayList<Usuaris> alUsuaris) {
+
+        for (Usuaris user : alUsuaris) {
+
+            for (Posts post : user.getAlPosts()) {
+                if (!post.isMajors() || this.isMajor() || post.isMajors() && this.isMajor()) {
+                    if (user.getClass().getSimpleName().equals("Adminitrador")) {
+                        System.out.println("*******************************");
+                        System.out.println("Data: " + post.getLdt().getDayOfMonth() + "/"
+                                + post.getLdt().getMonthValue() + "/" + post.getLdt().getYear() + " - "
+                                + post.getLdt().getHour() + ":" + post.getLdt().getMinute());
+                        System.out.println(" Autor: " + post.getUser().getUserName());
+                        System.out.println(" + 18 ? " + Boolean.toString(post.isMajors()));
+                        System.out.println(" Titol: " + post.getTitol());
+                        System.out.println(" Contingut: " + post.getContingut());
+                        System.out.println("*******************************");
+                    }
+                } else {
+                    System.out.println(" El contingut ha sigut restingit a causa de la teva edat. ");
+                }
+
+            }
+        }
+        for (Usuaris u : this.getAutorsQueSegueixo()) {
+            for (Posts p : u.getAlPosts()) {
+                if (!p.isMajors() || this.isMajor() || p.isMajors() && this.isMajor()) {
+
+                    System.out.println("*******************************");
+                    System.out.println("Data: " + p.getLdt().getDayOfMonth() + "/" + p.getLdt().getMonthValue() + "/"
+                            + p.getLdt().getYear() + " - " + p.getLdt().getHour() + ":" + p.getLdt().getMinute());
+                    System.out.println(" Autor: " + p.getUser().getUserName());
+                    System.out.println(" + 18 ? " + Boolean.toString(p.isMajors()));
+                    System.out.println(" Titol: " + p.getTitol());
+                    System.out.println(" Contingut: " + p.getContingut());
+                    System.out.println("*******************************");
+                } else {
+                    System.out.println(" El contingut ha sigut restingit a causa de la teva edat. ");
+                }
+            }
+
+        }
 
     }
 
-    // @Override
-    // public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris) {
-    //     // TODO Auto-generated method stub
-
-    // }
+    public void setMajor(boolean major) {
+        this.major = major;
+    }
 
 }

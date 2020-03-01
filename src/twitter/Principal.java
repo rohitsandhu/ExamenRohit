@@ -12,7 +12,7 @@ public class Principal {
         // ArrayList<Posts> alPosts = new ArrayList<>();
         System.out.println(" ");
         System.out.println("*******************************************");
-        System.out.println("**************TwitterPocho*****************");
+        System.out.println("************* TwitterPocho ****************");
         System.out.println("*******************************************");
         System.out.println(" ");
         System.out.println(" Escriu el nom d'usuari del administrador: ");
@@ -20,7 +20,6 @@ public class Principal {
         admin.demanarDades();
 
         alUsuaris.add(admin);
-
         mainBuncle: while (true) {
 
             Funcions.mostrarMenuPrincipal();
@@ -56,15 +55,20 @@ public class Principal {
                                             usuariLoged.afegirPostAlArray(post);
                                             System.out.println(" El post s'ha afegit correctament. ");
                                             break;
-
+                                            
                                         case 2:
-                                            Funcions.llistarPosts(usuariLoged.getAlPosts());
+                                            usuariLoged.mostrarMur(alUsuaris);
                                             break;
 
                                         case 3:
-                                            Funcions.llistarPosts(usuariLoged.getAlPosts());
-
-                                            usuariLoged.borrarPost(Integer.parseInt(System.console().readLine()));
+                                            // usuariLoged.mostrarMur(alUsuaris);
+                                            if(Funcions.llistarPosts(alUsuaris)){
+                                                Funcions.borrarPost(alUsuaris,Integer.parseInt(System.console().readLine()));
+                                            }else{
+                                                System.out.println(" No hi ha posts");
+                                            }
+                                            
+                                            
                                             break;
 
                                         case 4:
@@ -91,25 +95,58 @@ public class Principal {
                                         case 0:
                                             break bucle;
                                     }
-
+ 
                                     break;
 
                                 case "Lector":
                                     usuariLoged.mostrarMenu();
                                     opció = Integer.parseInt(System.console().readLine());
+                                    switch (opció) {
+                                        case 0:
+
+                                            break bucle;
+
+                                        case 1:
+                                            System.out.println(
+                                                    " Escriu el nom del Autor que vols seguir: (ENTER per veure tots els usuaris Autors ) ");
+                                            String resposta = System.console().readLine();
+                                            if (resposta.equals("")) {
+                                                usuariLoged.llistarUser("Autor", alUsuaris);
+                                                resposta = System.console().readLine();
+                                            }
+                                            usuariLoged.seguirAutor(resposta, alUsuaris);
+                                            break;
+                                        case 2:
+                                            usuariLoged.mostrarUsuarisSeguits();
+                                            break;
+                                        case 3:
+                                            usuariLoged.mostrarMur(alUsuaris);
+                                            break;
+
+                                    }
                                     break;
 
                                 case "Autor":
                                     usuariLoged.mostrarMenu();
                                     opció = Integer.parseInt(System.console().readLine());
                                     switch (opció) {
-                                        case 1:
+                                        case 0:
 
+                                            break bucle;
+
+                                        case 1:
+                                            System.out.println(" Escriu el titol del post: el post creat per: "
+                                                    + usuariLoged.getUserName());
+                                            Posts post = new Posts(System.console().readLine());
+                                            post.demanarDadesPost();
+                                            post.setUser(usuariLoged);
+                                            usuariLoged.afegirPostAlArray(post);
+                                            System.out.println(" El post s'ha afegit correctament. ");
                                             break;
 
                                         case 2:
                                             System.out.println(
-                                                    " Escriu el nom del Autor que vols seguir: (ENTER per veure tots els usuaris Lectors) ");
+                                                    " Escriu el nom del Autor que vols seguir: (ENTER per veure tots els usuaris Autors ) ");
                                             String resposta = System.console().readLine();
                                             if (resposta.equals("")) {
                                                 usuariLoged.llistarUser("Autor", alUsuaris);
@@ -123,11 +160,10 @@ public class Principal {
                                             break;
 
                                         case 4:
-                                            usuariLoged.mostrarMur();
+                                            usuariLoged.mostrarMur(alUsuaris);
                                             break;
                                     }
                                     break;
-
                             }
                         }
                     } else {

@@ -2,7 +2,7 @@ package twitter.templates;
 
 import java.util.ArrayList;
 
-import twitter.templates.*;
+// import twitter.templates.*;
 
 public class Administrador extends Usuaris {
 
@@ -46,37 +46,36 @@ public class Administrador extends Usuaris {
     }
 
     @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public void llistarUser(String clase, ArrayList<Usuaris> alUsuaris) {
-        System.out.println("**********************************");
+        System.out.println("**************************************");
         for (Usuaris user : alUsuaris) {
 
             if (user.getClass().getSimpleName().equals(clase)) {
-            System.out.println( user.getUserName());
+                System.out.println(user.getUserName());
             }
 
         }
+        System.out.println("**********************************");
 
     }
 
     @Override
-    public void mostrarMur() {
-        // TODO Auto-generated method stub
+    public void mostrarMur(ArrayList<Usuaris> alUsuaris) {
+
+        for (Usuaris u : alUsuaris) {
+
+            for (Posts p : u.getAlPosts()) {
+                System.out.println("*******************************");
+                System.out.println("Data: " + p.getLdt().getDayOfMonth() + "/" + p.getLdt().getMonthValue() + "/"
+                        + p.getLdt().getYear() + " - " + p.getLdt().getHour() + ":" + p.getLdt().getMinute());
+                System.out.println(" Autor: " + p.getUser().getUserName());
+                System.out.println(" + 18 ? " + Boolean.toString(p.isMajors()));
+                System.out.println(" Titol: " + p.getTitol());
+                System.out.println(" Contingut: " + p.getContingut());
+                System.out.println("*******************************");
+            }
+        }
 
     }
-
-    // @Override
-    // public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris) {
-    //     // TODO Auto-generated method stub
-
-    // }
-
-
-
 
 }

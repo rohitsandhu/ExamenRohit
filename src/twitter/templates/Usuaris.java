@@ -1,7 +1,7 @@
 package twitter.templates;
 
 import java.util.ArrayList;
-import twitter.templates.*;
+// import twitter.templates.*;
 
 public abstract class Usuaris {
 
@@ -33,9 +33,7 @@ public abstract class Usuaris {
         this.alPosts.add(post);
     }
 
-    public abstract void demanarDades();
 
-    public abstract void mostrarMenu();
 
     public ArrayList<Posts> getAlPosts() {
         return alPosts;
@@ -45,19 +43,6 @@ public abstract class Usuaris {
         this.alPosts = alPosts;
     }
 
-    public void borrarPost(int numero) {
-        int iterador = 1;
-        for (Posts post : alPosts) {
-            if (iterador == numero) {
-                alPosts.remove(iterador - 1);
-            }
-            iterador++;
-        }
-    }
-
-    public abstract String tornarClasse();
-
-    public abstract void llistarUser(String clase, ArrayList<Usuaris> alUsuaris);
 
     public ArrayList<Usuaris> getAutorsQueSegueixo() {
         return autorsQueSegueixo;
@@ -67,26 +52,30 @@ public abstract class Usuaris {
         this.autorsQueSegueixo = autorsQueSegueixo;
     }
 
-    public void afegirAutorASeguir(Usuaris resposta){
+    public void afegirAutorASeguir(Usuaris resposta) {
         this.autorsQueSegueixo.add(resposta);
     }
 
-    @Override
-    public abstract String toString();
+    public abstract void llistarUser(String clase, ArrayList<Usuaris> alUsuaris);
+    public abstract String tornarClasse();
+    public abstract void demanarDades();
+    public abstract void mostrarMenu();
+    public abstract void mostrarMur(ArrayList<Usuaris> alUsuaris);
 
-    public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris){
+
+    public void seguirAutor(String aSeguir, ArrayList<Usuaris> alUsuaris) {
         for (Usuaris user : alUsuaris) {
-            if(user.userName.equals(aSeguir)){
+            if (user.getUserName().equals(aSeguir)) {
                 this.afegirAutorASeguir(user);
             }
         }
     }
 
-	public void mostrarUsuarisSeguits() {
+    public void mostrarUsuarisSeguits() {
         for (Usuaris uu : autorsQueSegueixo) {
             System.out.println(uu.getUserName());
         }
     }
-    
-    public abstract void mostrarMur();
+
+
 }
